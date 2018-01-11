@@ -1,0 +1,19 @@
+#!/bin/bash
+if [ "$1" == "--help" ]; then
+cat ~/CusCom/HelpFiles/${0##*/}.help
+exit
+fi
+sudoPasswd=~/CusCom/sudoPasswd # Location of default sudoPasswd file.
+if [ -e $sudoPasswd ]
+then
+cat $sudoPasswd | sudo -S --prompt="Sudo requires passcode: " echo "Auto-sudo initiated."
+else
+echo "No sudo passwd file at location"
+echo "$sudoPasswd. If you want"
+echo "to use auto-sudo functionality, type"
+echo "your password into a file named sudoPasswd"
+echo "in the directory of this script."
+fi
+if [ "$1" != "" ]
+then sudo "$@"
+fi

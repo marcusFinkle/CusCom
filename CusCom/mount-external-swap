@@ -1,0 +1,11 @@
+#!/bin/bash
+# Program for mounting external swap devices.
+# Requires knowing UUID of all external swap
+# devices, though, and also that you have an
+# entry in /etc/mtab for it. I hope to soon
+# add support for unknown swap partitions,
+# and automatically adding them to /etc/mtab.
+
+mount 787485a8-e911-44f2-a2ca-78dfa0bb46e8
+
+

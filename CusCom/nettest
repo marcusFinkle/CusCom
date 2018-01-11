@@ -1,0 +1,60 @@
+#!/bin/bash
+if [ "$1" == "--help" ]; then
+cat ~/CusCom/HelpFiles/${0##*/}.help
+exit
+fi
+
+# the grep here selects the the word from from line that says:
+# "(num) bytes from 8.8.8.8...",
+# "Network Unreachable", or
+# "Blah Blah Stats 100% Packet Loss Blah Stats Blah".
+# 8.8.8.8 and 8.8.4.4 are Google DNS servers. If they
+# Are both down, the world has bigger problems than
+# This computer's WiFi not working.
+pingoutp="$(ping -c 1 -w 1 8.8.8.8 2>&1)"
+pingaltp="$(ping -c 1 -w 1 50.63.222.1 2>&1)"
+pingout="$(echo $pingoutp | grep -o "from")"
+pingout1="$(echo $pingoutp | grep -o "unreachable")"
+pingout2="$(echo $pingoutp | grep -o "100%\ packet\ loss")"
+pingalt="$(echo $pingaltp | grep -o "from")"
+pingalt1="$(echo $pingaltp | grep -o "unreachable")"
+pingalt2="$(echo $pingaltp | grep -o "100%\ packet\ loss")"
+if [ "$pingout1" = "" ]
+	then pingout1="foo"
+fi
+if [ "$pingalt1" = "" ]
+	then pingalt1="bar"
+fi
+if [ "$pingout2" = "" ]
+	then pingout2="foo"
+fi
+if [ "$pingalt2" = "" ]
+	then pingalt2="bar"
+fi
+#for debugging purposes only:
+#echo "pingout EQU $pingout"
+#echo "pingout1 EQU $pingout1"
+#echo "pingout2 EQU $pingout2"
+#echo "pingalt EQU $pingalt"
+#echo "pingalt1 EQU $pingalt1"
+#echo "pingalt2 EQU $pingalt2"
+if [ "$pingout1" = "unreachable" ]
+	then echo "Network connection: Offline"
+	exit 1
+elif [ "$pingout2" = "100% packet loss" ]
+	then echo "Network connection: Slow or blocked."
+	exit 2
+elif [ "$pingout" = "from" ]
+	then echo "Network connection: Online"
+	exit 0
+elif [ "$pingalt1" = "unreachable" ]
+	then echo "Network connection: Offline"
+	exit 1
+elif [ "$pingalt2" = "100% packet loss" ]
+	then echo "Network connection: Slow or blocked."
+	exit 2
+elif [ "$pingalt" = "from" ]
+	then echo "Network connection: Online"
+	exit 5
+	else echo "Some unknown error has occurred."; echo "Please consult the network manager and ask"; echo "if ping requests are enabled to leave the network."; exit 3
+fi

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# PROMPT_COMMAND="echo -ne \"\033]0; $1 \007\""
+
+# PROMPT_COMMAND='echo -en "\033]0;$1\a"'
+
+# PROMPT_COMMAND='echo -en "\033]0;$1\a"'
+
+wmctrl -r :ACTIVE: -N "$1"

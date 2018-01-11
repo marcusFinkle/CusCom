@@ -1,0 +1,3 @@
+A command using beep to tell you when it executes.
+Only useful for ending a long command with, ex.:
+sudo apt-get upgrade && sudo apt-get update; alert

@@ -1,0 +1,13 @@
+sudoIfPasswd is a utility to automatically enter
+your sudo password by using it stored in a file.
+
+Usage:
+
+	sudoifpasswd [COMMAND]...
+	sudo-if-passwd [COMMAND]...
+	autosudo [COMMAND]...
+	auto-sudo [COMMAND]...
+	
+Where COMMAND is a quoted command to be run as 
+root. You may specify up to 9 consecutive quoted 
+commands to be run.

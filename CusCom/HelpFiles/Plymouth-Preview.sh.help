@@ -1,0 +1,10 @@
+Usage: plymouth-preview [TIME]
+
+Used to preview the Plymouth boot sequence.
+
+Arguments:
+
+  TIME     Amount of time to preview
+           Plymouth. Default is 10
+           seconds.
+

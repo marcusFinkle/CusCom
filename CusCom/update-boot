@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "Updating initramfs..."
+sudo update-initramfs -u
+echo "Updating grub..."
+sudo update-grub
+echo "Updating burg..."
+sudo update-burg

@@ -1,0 +1,16 @@
+i=99
+localSeq=192.168.11
+err=
+test$i=5
+echo "test1=$test1"
+while [ "$i" -le "255" ]
+do
+ping -c 1 -w 1 -W 0.5 $localSeq.$i > /dev/null
+err=$?
+if [ "$err" -eq "0" ]
+then echo "$localSeq.$i online"
+elif [ "$err" -eq "1" ]
+then echo "$localSeq.$i offline"
+fi
+i=$(($i+1))
+done

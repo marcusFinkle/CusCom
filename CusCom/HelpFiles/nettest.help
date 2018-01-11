@@ -1,0 +1,6 @@
+A tool for testing an internet conection via CLI.
+Useful for server installations. Uses Google's 
+two DNS servers, tries to ping them, and lets
+you know if it found them. If both of Google's 
+DNS servers are down, the world has bigger
+problems.

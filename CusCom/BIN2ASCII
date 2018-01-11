@@ -1,0 +1,5 @@
+#!/bin/bash
+data=$(cat $1 | tr '.' ' ')
+for c in $data; do
+    echo $c | xxd -r -p
+done

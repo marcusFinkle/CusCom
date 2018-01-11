@@ -1,0 +1,152 @@
+# Alias for shutdown and reboot
+
+alias shutoff='sudo shutdown -h now'
+alias reboot='sudo shutdown -r now'
+alias restart='sudo shutdown -r now'
+alias shutdown='sudo shutdown -h now'
+shutoff='sudo shutdown -h now'
+reboot='sudo shutdown -r now'
+restart='sudo shutdown -r now'
+shutdown='sudo shutdown -h now'
+
+# Alias for pipe and other special characters:
+
+alias pipe='|'
+
+# Alias for ACMS chatroom
+
+alias acmschat='irssi --connect irc.prison.net'
+alias ACMSchat='irssi --connect irc.prison.net'
+acmschat='irssi --connect irc.prison.net'
+ACMSchat='irssi --connect irc.prison.net'
+
+# Alias for clr, because 1) I never remember to
+# use clear, and 2) so I can have an echo "" make
+# a blankline above(I prefer it like that).
+
+alias clear='clear; echo "" '
+alias cls='clear'
+alias clsls='clear; ls'
+clear='clear; echo "" '
+cls='clear'
+clsls='clear; ls'
+
+# Aliases for soalias and edalias, to source and edit
+# .aliases, this file, respectively.
+
+alias soalias='source ~/.aliases'
+alias edalias='nano ~/.aliases'
+soalias='source ~/.aliases'
+edalias='nano ~/.aliases'
+
+# Aliases for my custom commands, or the CusCom library as
+# I refer to them as collectively.
+
+alias nettest='~/CusCom/nettest'
+alias alert='~/CusCom/alert.sh'
+alias bat='~/CusCom/battest'
+alias battest='~/CusCom/battest'
+alias change-background='~/CusCom/change-background.sh'
+alias CloneDevice='~/CusCom/CloneDevice.sh'
+alias clonedevice='~/CusCom/CloneDevice.sh'
+alias clone-device='~/CusCom/CloneDevice.sh'
+alias force-empty-trash='~/CusCom/force-empty-trash'
+alias removeOldKernels='~/CusCom/purgeOldKernels'
+alias purgeOldKernels='~/CusCom/purgeOldKernels'
+alias purge-old-kernels='~/CusCom/purgeOldKernels'
+alias remove-old-kernels='~/CusCom/purgeOldKernels'
+alias InstallGeoIPData='~/CusCom/InstallGeoIPData'
+alias install-geoip-data='~/CusCom/InstallGeoIPData'
+alias update-boot='~/CusCom/update-boot'
+alias diskusage='~/CusCom/diskUsage'
+alias krash='~/CusCom/krashDir/krash'
+alias title='~/CusCom/title'
+alias triangleType='~/CusCom/triangleType'
+alias sudo-if-passwd='~/CusCom/sudoIfPasswd'
+alias autosudo='~/CusCom/sudoIfPasswd'
+alias auto-sudo='~/CusCom/sudoIfPasswd'
+alias sudoifpasswd='~/CusCom/sudoIfPasswd'
+alias append='~/CusCom/append'
+alias install-theme='~/CusCom/install-theme'
+alias netscan='~/CusCom/netscan'
+
+nettest='~/CusCom/nettest'
+alert='~/CusCom/alert.sh'
+bat='~/CusCom/battest'
+battest='~/CusCom/battest'
+changebackground='~/CusCom/change-background.sh'
+CloneDevice='~/CusCom/CloneDevice.sh'
+clonedevice='~/CusCom/CloneDevice.sh'
+#clone-device='~/CusCom/CloneDevice.sh'
+forceemptytrash='~/CusCom/force-empty-trash'
+removeOldKernels='~/CusCom/purgeOldKernels'
+purgeOldKernels='~/CusCom/purgeOldKernels'
+purgeoldkernels='~/CusCom/purgeOldKernels'
+removeoldkernels='~/CusCom/purgeOldKernels'
+InstallGeoIPData='~/CusCom/InstallGeoIPData'
+installgeoipdata='~/CusCom/InstallGeoIPData'
+#update-boot='~/CusCom/update-boot'
+diskusage='~/CusCom/diskUsage'
+krash='~/CusCom/krashDir/krash'
+title='~/CusCom/title'
+triangleType='~/CusCom/triangleType'
+sudoifpasswd='~/CusCom/sudoIfPasswd'
+autosudo='~/CusCom/sudoIfPasswd'
+#auto-sudo='~/CusCom/sudoIfPasswd'
+sudoifpasswd='~/CusCom/sudoIfPasswd'
+append='~/CusCom/append'
+
+# Alias for sudo, to allow any of these aliases or any aliases
+# in general to be run as root with sudo. 
+
+alias sudo='sudo '
+sudo='sudo '
+
+# cnano for CusCom program editing, so I can easily modify my 
+# custom programs. Uses same principle as the sudo alias above.
+
+alias cnano='nano '
+cnano='nano '
+
+# Make sure all CusComs are runnable so they can be, well, run.
+
+chmod +x ~/CusCom/*
+
+# Alias for espeak to be say, because that's how it is on a Mac.
+
+alias say='espeak'
+alias speak='espeak'
+say='espeak'
+speak='espeak'
+
+# Alias for geoiplookup to automatically look up city locations:
+
+alias geoiplookup='geoiplookup -f /usr/share/GeoIP/GeoLiteCity.dat'
+alias geoiplookupd='geoiplookup -d /usr/share/GeoIP/'
+geoiplookup='geoiplookup -f /usr/share/GeoIP/GeoLiteCity.dat'
+geoiplookupd='geoiplookup -d /usr/share/GeoIP/'
+
+# When I'm angry:
+
+alias triggered='echo "TRIGGERED!!!";sleep 0.2; sudo shutdown -h 000'
+
+# Alias for setting the terminal title. Yes, it's a function.
+
+function set-title() {
+  if [[ -z "$ORIG" ]]; then
+    ORIG=$PS1
+  fi
+  TITLE="\[\e]2;$*\a\]"
+  PS1=${ORIG}${TITLE}
+}
+
+# Different color prompts I like, commented out to be changed as needed:
+# (soon to have a function with switching supported from CLI)
+
+
+# export PS1="[\[$(tput sgr0)\]\[\033[38;5;1m\]\t\[$(tput sgr0)\]\[\033[38;5;15m\]][\[$(tput sgr0)\]\[\033[38;5;10m\]\u@\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;14m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]]\n\\$ \[$(tput sgr0)\]"
+
+# And finally, set a variable so programs can check if this toolset is installed:
+
+CCInstalled=True
+

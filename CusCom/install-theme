@@ -1,0 +1,8 @@
+plymouthfile=ubuntu-background
+name=ubuntu-background
+
+sudo rm -r /lib/plymouth/themes/$name
+sudo cp -r ~/Boot-Themes/$name /lib/plymouth/themes/
+sudo update-alternatives --install /lib/plymouth/themes/default.plymouth default.plymouth /lib/plymouth/themes/$name/$plymouthfile.plymouth 100
+sudo update-alternatives --config default.plymouth
+sudo update-initramfs -uvkall

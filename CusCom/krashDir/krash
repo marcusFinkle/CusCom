@@ -1,0 +1,65 @@
+#!/bin/bash
+# Krash, Kenny Ray's Awesome SHell, an extention
+# of bash with many more features. Really, it is
+# just links to other files.
+echo "Starting up KRASH: Kenny Ray's Awesome SHell..."
+shLoc=~/CusCom/krashDir/
+source ~/.bashrc
+source ~/.krashrc
+HISTFILE=~/.krash_history
+echo "Files have been filed..."
+echo "Testing for command existence..."
+command -v trap > /dev/null
+errcode=$?
+if [ $errcode -eq 0 ]; then echo "Command trap exists."
+else echo "Missing command trap." && exit 1
+fi
+
+command -v history > /dev/null
+errcode=$?
+if [ $errcode -eq 0 ]; then echo "Command history exists."
+else echo "Missing command history." && exit 1
+fi
+
+command -v wmctrl > /dev/null
+errcode=$?
+if [ $errcode -eq 0 ]; then echo "Command wmctrl exists."
+else echo "Missing command wmctrl." && echo -n "Install wmctrl?[y/N]"
+read install
+if [ "$install" == "y" ]; then sudo apt-get install wmctrl
+elif [ "$install" == "Y" ]; then sudo apt-get install wmctrl
+else echo "wmctrl is missing and not going to be installed. Exiting." && exit
+fi
+fi
+
+echo "No commands missing."
+echo "Activating..."
+trapd() {
+trap '' 2
+trap '' 20
+}
+trape() {
+trap 2
+trap 20
+}
+trapd
+echo ""
+clear
+wmctrl -r :ACTIVE: -N "KRASH as $USER on $HOSTNAME"
+echo "Welcome to KRASH! For help, just type help."
+history -a "~/.krash_history"
+# echo -n "$USER@$(hostname):$(dirs)$ "
+while IFS="" read -r -e -d $'\n' -p "$USER@$(hostname):$(dirs)$ " curcom; do
+# echo "$curcom"
+echo $curcom >> ~/.krash_history
+history -s "$curcom"
+if [ "$curcom" == "exit" ]; then echo "Goodbye!" && echo "Leaving KRASH..." && trape && wmctrl -r :ACTIVE: -N "Terminal" && exit
+elif [ "$curcom" == "echo \$0" ]; then echo "krash"
+	else
+		command -v $curcom > /dev/null
+		errcode=$?
+		if [ $errcode -eq 0 ]; then trape && $curcom && trapd
+			else /usr/lib/command-not-found $curcom
+		fi
+fi
+done

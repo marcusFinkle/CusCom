@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ "$1" == "--help" ]; then
+cat ~/CusCom/HelpFiles/${0##*/}.help
+exit
+fi
+tr -d '\r' < $1 > $2

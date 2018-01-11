@@ -1,0 +1,4 @@
+if [ "$1" == "--help" ]; then
+cat ~/CusCom/HelpFiles/${0##*/}.help
+exit
+fi
